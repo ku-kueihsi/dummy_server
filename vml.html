@@ -1,0 +1,124 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml">
+
+<head>
+  <style>
+    v\:* {
+      behavior: url(#default#VML);
+    }
+  </style>
+</head>
+
+<body>
+  <div style="width:1024;height:1024">
+    <SCRIPT>
+      <!-- fnSetRotation function -->
+       //oObj input requires that a matrix filter be applied.
+       //deg input defines the requested angle of rotation.
+      var deg2radians = Math.PI * 2 / 360;
+
+      function fnSetRotation(oObj, deg) {
+        rad = deg * deg2radians;
+        costheta = Math.cos(rad);
+        sintheta = Math.sin(rad);
+
+        // oObj.filters.item(0).M11 = costheta;
+        // oObj.filters.item(0).M12 = -sintheta;
+        // oObj.filters.item(0).M21 = sintheta;
+        // oObj.filters.item(0).M22 = costheta;
+        oObj.filters.item(0).M11 = 1;
+        oObj.filters.item(0).M12 = 0;
+        oObj.filters.item(0).M21 = 1;
+        oObj.filters.item(0).M22 = 1;
+        oObj.filters.item(0).Dy = 10;
+
+      }
+
+       <!-- fnResize function -->
+       //oObj input requires that a matrix filter be applied.
+       //flMultiplier input defines the amount by which the oObj is resized.
+      function fnResize(oObj, flMultiplier) {
+        oObj.filters.item(0).M11 *= flMultiplier;
+        oObj.filters.item(0).M12 *= flMultiplier;
+        oObj.filters.item(0).M21 *= flMultiplier;
+        oObj.filters.item(0).M22 *= flMultiplier;
+        oObj.filters.item(0).Dy *= flMultiplier;
+      }
+
+
+      var iCount = 400;
+       <!-- fnSpin function -->
+      function fnSpin(oObj) {
+
+        <!-- The function chosen for flMultiple defines size changes in the animation. -->
+        var flMultiple = iCount / 720;
+        iCount += 1;
+
+        <!-- The number of 360-degree rotations is three. -->
+        if (iCount >= 360 * 3) {
+          oObj.onfilterchange = null;
+        }
+
+        fnSetRotation(oObj, iCount);
+        fnResize(oObj, flMultiple);
+      }
+    </SCRIPT>
+
+    <!-- When loaded, the onfilterchange event is fired as the filter makes
+its initial settings.  This starts the animation.-->
+    <DIV ID="oDiv" STYLE="position:absolute;
+	filter:progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand')" onfilterchange="fnSpin(this)">
+      <DIV STYLE=" background-color: lightblue; padding:5;">
+        SOME TEXT
+        <BR/>SOME TEXT
+        <BR/>SOME TEXT
+        <BR/>SOME TEXT
+        <BR/>
+      </DIV>
+    </DIV>
+    <!-- <v:rect id="myrect1" fillcolor="blue"
+      style="top:10px; left:50px; width:50px; height:50px; position:absolute;
+             filter:progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand')"
+      onfilterchange="fnSpin(this)"/> -->
+
+    <!-- <v:rect id="myrect2" fillcolor="yellow" style="top:10px; left:50px; width:50px; height:50px;" skew on="true"; matrix="1.5,0.5,0.5,1.5,,0">
+    </v:rect>
+
+    <v:rect id="myrect3" fillcolor="red" style="top:10px; left:50px; width:50px; height:50px;">
+      <v:skew on="true" matrix="-.5,0,0.2,-.5,,0" />
+    </v:rect>
+
+    <v:rect fillcolor="green" style="position:relative;top:1;left:1;width:50;height:50">
+      <v:skew on="t" matrix="1,-0.5,0,0.75,0,0" />
+    </v:rect>
+    <v:rect style="width:100;height:100">
+      <v:fill src="chess_board.jpg" type="tile">
+      <v:/fill>
+      <v:skew on="t" matrix="1,-3,0,0.75,0,0" />
+      <v:/skew>
+    </v:rect>
+    <v:line from="50 300" to="400 100">
+      <v:fill on="True" color="red" />
+      <v:path textpathok="True" />
+      <v:textpath on="True" string="VML Text" style="font:normal normal normal 36pt Arial" />
+    </v:line>
+    <v:line from="50 200" to="400 100">
+      <v:fill on="True" color="red" />
+      <v:path textpathok="True" />
+      <v:textpath on="True" string="VML Text" style="font:normal normal normal 36pt Arial" />
+      <v:skew on="t" matrix="1,-3,0,0.75,0,0" />
+      <v:/skew>
+    </v:line> -->
+    <!-- <v:rect id="myrect2" fillcolor="yellow" style="top:10px; left:50px; width:50px; height:50px;" skew on="true"; matrix="1.5,0.5,0.5,1.5,,0" /> -->
+    <v:rect id="myrect2" fillcolor="yellow" style="top:10px; left:50px; width:50px; height:50px;">
+      <v:skew on="true" matrix="1, 0, 5, 0, 1, 5" />
+    </v:rect>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1024px" height="1024px">
+      <text x="10" y="20" transform="matrix(1,2,3,4,5,6)">
+        <!-- <text x="10" y="20"> -->
+        SVG Text Example
+      </text>
+    </svg>
+  </div>
+</body>
+
+</html>

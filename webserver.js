@@ -1,7 +1,7 @@
 // A very basic web server in node.js
 // Stolen from: Node.js for Front-End Developers by Garann Means (p. 9-10)
 
-var port = 1337;
+var port = 1949;
 var serverUrl = "127.0.0.1";
 
 var http = require("http");
@@ -31,15 +31,15 @@ http.createServer(function(req, res) {
     ".gif": "image/gif",
     ".png": "image/png"
   };
-  var isValidExt = validExtensions[ext];
+  var mimeType = validExtensions[ext];
 
-  if (isValidExt) {
+  if (mimeType) {
 
     localPath += filename;
-    path.exists(localPath, function(exists) {
+    fs.exists(localPath, function(exists) {
       if (exists) {
         console.log("Serving file: " + localPath);
-        getFile(localPath, res, ext);
+        getFile(localPath, res, mimeType);
       } else {
         console.log("File not found: " + localPath);
         res.writeHead(404);

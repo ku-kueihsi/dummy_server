@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <script src="closure-library/closure/goog/base.js"></script>
+  <script src="compiled/event_order_debug.js"></script>
+  <!-- // <script src="compiled/event_order_compiled.js"></script> -->
+</head>
+
+<body>
+<link type="text/css" rel="stylesheet" href="example.css">
+
+<div class="d1">1
+    <div class="d2">2
+        <div class="d3">3
+        </div>
+    </div>
+</div>
+
+<script>
+  eventOrder.start();
+</script>
+
+</body>
+</html>

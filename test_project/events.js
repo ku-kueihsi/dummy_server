@@ -1,4 +1,4 @@
-goog.provide('test.start')
+goog.provide('event.start')
 
 goog.require('goog.dom');
 goog.require('goog.events')

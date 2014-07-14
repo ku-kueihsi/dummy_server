@@ -56,9 +56,12 @@ function sayHi() {
   stroke = null;
 
   var font = new goog.graphics.Font(30, 'Times');
-  graphics.drawText('Large Top Center', 0, 0, 600, 200, 'center', null,
+  var text = graphics.drawText('Large Top Center', 0, 0, 600, 200, 'center', null,
       font, stroke, fill);
+
+  graphics.setElementAffineTransformMatrix(text, [1, 0, 0, 0.5, 0, 0]);
   graphics.setElementTransform(rect, 0, 0, 45, 0, 0);
+  // graphics.setElementAffineTransformMatrix(rect, [1, 0, 0, 0, 1, 0]);
 
   font = new goog.graphics.Font(18, 'Arial');
   // font.setRotation(90);
@@ -85,10 +88,10 @@ function sayHi() {
 
   goog.events.listen(
     dot['graphic'],
-    goog.events.EventType.MOUSEMOVE,
+    goog.events.EventType.MOUSEUP,
     clickHandler);
 
-  dot['graphic'].dispatchEvent(goog.events.EventType.MOUSEMOVE);
+  dot['graphic'].dispatchEvent(goog.events.EventType.MOUSEUP);
 
   goog.events.listen(
     window,
